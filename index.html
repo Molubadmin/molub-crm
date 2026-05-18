@@ -7,7 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-:root{--blue:#0000FA;--blue-dim:#0000c4;--blue-ghost:rgba(0,0,250,0.07);--white:#fff;--off-white:#f4f4f6;--gray-100:#ececf0;--gray-200:#d8d8e0;--gray-400:#9898a8;--gray-600:#555560;--black:#0a0a0f;--green:#00c97a;--amber:#f5a623;--red:#e5533a;--sidebar-w:240px;--radius:10px;--shadow-lg:0 8px 40px rgba(0,0,0,0.13);}
+:root{--blue:#0000FA;--blue-dim:#0000c4;--blue-ghost:rgba(0,0,250,0.07);--off-white:#f4f4f6;--gray-100:#ececf0;--gray-200:#d8d8e0;--gray-400:#9898a8;--gray-600:#555560;--black:#0a0a0f;--green:#00c97a;--red:#e5533a;--sidebar-w:240px;--radius:10px;--shadow-lg:0 8px 40px rgba(0,0,0,0.13);}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--black);min-height:100vh;display:flex;overflow-x:hidden;}
 .sidebar{width:var(--sidebar-w);min-height:100vh;background:var(--black);display:flex;flex-direction:column;position:fixed;top:0;left:0;z-index:100;}
@@ -119,7 +119,6 @@ tr:hover td{background:var(--off-white);}
 .alert-info svg{width:14px;height:14px;flex-shrink:0;margin-top:1px;}
 .spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite;display:inline-block;}
 @keyframes spin{to{transform:rotate(360deg);}}
-.page-loader{display:flex;align-items:center;justify-content:center;padding:60px;flex-direction:column;gap:14px;color:var(--gray-400);font-size:13px;}
 .empty-state{padding:50px 20px;text-align:center;color:var(--gray-400);font-size:13px;}
 .toast{position:fixed;bottom:24px;right:24px;background:var(--black);color:white;padding:12px 16px;border-radius:8px;font-size:13px;z-index:999;display:flex;align-items:center;gap:8px;box-shadow:var(--shadow-lg);transform:translateY(80px);opacity:0;transition:all .25s cubic-bezier(.34,1.56,.64,1);}
 .toast.show{transform:none;opacity:1;}
@@ -128,66 +127,14 @@ tr:hover td{background:var(--off-white);}
 .truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:160px;}
 .mono{font-family:'Space Mono',monospace;}
 #printFrame{display:none;}
-
-/* ═══════════ NOTA IMPRIMIBLE ═══════════ */
-@media print{
-  body>*{display:none!important;}
-  #printFrame{display:block!important;position:fixed;inset:0;background:white;z-index:9999;overflow:auto;}
-  @page{margin:0;size:A4;}
-}
-.nota-page{width:210mm;min-height:297mm;background:white;font-family:'DM Sans',Arial,sans-serif;color:#111;display:flex;flex-direction:column;font-size:10px;}
-.nota-header{display:flex;align-items:stretch;}
-.nota-bar-left{width:14mm;background:#0000FA;flex-shrink:0;}
-.nota-center{flex:1;padding:8mm 6mm;display:flex;align-items:center;}
-.nota-molub{font-size:26px;font-weight:700;color:#0a0a0f;letter-spacing:-1px;display:flex;align-items:center;gap:2px;}
-.nota-molub-gear{color:#0000FA;display:inline-flex;align-items:center;}
-.nota-right{background:#0000FA;padding:6mm 8mm;display:flex;align-items:center;gap:8px;min-width:48mm;}
-.nota-synlox-name{color:white;font-size:13px;font-weight:700;letter-spacing:1.5px;}
-.nota-synlox-tag{color:rgba(255,255,255,.75);font-size:8px;margin-top:2px;}
-.nota-body{padding:6mm 14mm;flex:1;}
-.nota-title-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:5mm;padding-bottom:4mm;border-bottom:2px solid #0000FA;}
-.nota-doc-title{font-size:18px;font-weight:700;color:#0000FA;}
-.nota-doc-fecha{font-size:9px;color:#666;margin-top:3px;}
-.nota-folio-box{text-align:right;}
-.nota-folio-label{font-size:8px;color:#888;text-transform:uppercase;letter-spacing:.08em;}
-.nota-folio-value{font-size:14px;font-weight:700;font-family:'Space Mono',monospace;color:#0a0a0f;}
-.sec-title{font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:#0000FA;font-weight:700;margin:4mm 0 2mm;}
-.cliente-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5mm 5mm;background:#f5f5f7;border-radius:4px;padding:3mm 4mm;margin-bottom:4mm;}
-.cf-label{font-size:7.5px;color:#999;text-transform:uppercase;letter-spacing:.04em;}
-.cf-value{font-size:10px;font-weight:600;color:#0a0a0f;margin-top:0.5mm;}
-.nota-table{width:100%;border-collapse:collapse;margin-bottom:4mm;font-size:9.5px;}
-.nota-table thead tr{background:#0000FA;color:white;}
-.nota-table th{padding:2.5mm 3.5mm;text-align:left;font-size:8px;text-transform:uppercase;letter-spacing:.06em;font-weight:600;}
-.nota-table td{padding:2.5mm 3.5mm;border-bottom:1px solid #eee;color:#333;}
-.nota-table tbody tr:nth-child(even) td{background:#f9f9fb;}
-.nota-totales{display:flex;justify-content:flex-end;margin-bottom:5mm;}
-.nota-totales-box{min-width:65mm;border:1px solid #e0e0e0;border-radius:4px;overflow:hidden;}
-.tot-row{display:flex;justify-content:space-between;padding:2mm 3.5mm;font-size:9.5px;border-bottom:1px solid #f0f0f0;}
-.tot-row:last-child{border-bottom:none;background:#0000FA;color:white;font-weight:700;font-size:11px;padding:3mm 3.5mm;}
-.nota-banco{background:#f0f0ff;border:1px solid rgba(0,0,250,.2);border-radius:4px;padding:3mm 4mm;margin-bottom:5mm;}
-.banco-title{font-size:8px;color:#0000FA;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:2.5mm;}
-.banco-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5mm;}
-.banco-label{font-size:7.5px;color:#888;text-transform:uppercase;}
-.banco-value{font-size:9.5px;font-weight:700;color:#0a0a0f;font-family:'Space Mono',monospace;margin-top:0.5mm;}
-.nota-firmas{display:grid;grid-template-columns:1fr 1fr;gap:10mm;margin-top:6mm;margin-bottom:4mm;}
-.firma-box{text-align:center;}
-.firma-space{height:16mm;border-bottom:1px dashed #bbb;margin-bottom:2mm;position:relative;}
-.firma-sello{position:absolute;right:3mm;top:50%;transform:translateY(-50%);width:14mm;height:14mm;border:1px dashed #ccc;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:6px;color:#ccc;}
-.firma-line{font-size:8.5px;color:#555;padding-top:1.5mm;}
-.nota-footer-bar{background:#1a1a1a;padding:3.5mm 14mm;display:flex;justify-content:space-between;align-items:center;margin-top:auto;}
-.footer-left{display:flex;align-items:center;gap:5mm;}
-.footer-synlox-name{font-size:8px;color:white;font-weight:700;letter-spacing:1px;margin-top:1mm;}
-.footer-contact{font-size:7.5px;color:#888;line-height:1.9;text-align:right;}
-.footer-url{font-size:8px;color:#0000FA;font-weight:600;}
+@media print{body>*{display:none!important;}#printFrame{display:block!important;position:fixed;inset:0;background:white;z-index:9999;overflow:auto;}@page{margin:0;size:A4;}}
 </style>
 </head>
 <body>
 
 <aside class="sidebar">
   <div class="sidebar-logo">
-    <div class="logo-icon">
-      <svg viewBox="0 0 24 24"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.92c.04-.34.07-.68.07-1.08s-.03-.74-.07-1.08l2.3-1.8c.21-.16.27-.45.14-.69l-2.18-3.78c-.14-.23-.42-.32-.66-.23l-2.72 1.09c-.56-.43-1.17-.79-1.84-1.06L14.34 2.3c-.05-.26-.27-.45-.54-.45h-4.36c-.27 0-.49.19-.54.45L8.56 5.13c-.67.27-1.28.63-1.84 1.06L4 5.1c-.24-.09-.52 0-.66.23L1.16 9.11c-.13.24-.07.53.14.69l2.3 1.8C3.53 11.9 3.5 12.26 3.5 12.6s.03.7.1 1.08l-2.3 1.8c-.21.16-.27.45-.14.69l2.18 3.78c.14.23.42.32.66.23l2.72-1.09c.56.43 1.17.79 1.84 1.06l.34 2.83c.05.26.27.45.54.45h4.36c.27 0 .49-.19.54-.45l.34-2.83c.67-.27 1.28-.63 1.84-1.06l2.72 1.09c.24.09.52 0 .66-.23l2.18-3.78c.13-.24.07-.53-.14-.69l-2.3-1.8z"/></svg>
-    </div>
+    <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.92c.04-.34.07-.68.07-1.08s-.03-.74-.07-1.08l2.3-1.8c.21-.16.27-.45.14-.69l-2.18-3.78c-.14-.23-.42-.32-.66-.23l-2.72 1.09c-.56-.43-1.17-.79-1.84-1.06L14.34 2.3c-.05-.26-.27-.45-.54-.45h-4.36c-.27 0-.49.19-.54.45L8.56 5.13c-.67.27-1.28.63-1.84 1.06L4 5.1c-.24-.09-.52 0-.66.23L1.16 9.11c-.13.24-.07.53.14.69l2.3 1.8C3.53 11.9 3.5 12.26 3.5 12.6s.03.7.1 1.08l-2.3 1.8c-.21.16-.27.45-.14.69l2.18 3.78c.14.23.42.32.66.23l2.72-1.09c.56.43 1.17.79 1.84 1.06l.34 2.83c.05.26.27.45.54.45h4.36c.27 0 .49-.19.54-.45l.34-2.83c.67-.27 1.28-.63 1.84-1.06l2.72 1.09c.24.09.52 0 .66-.23l2.18-3.78c.13-.24.07-.53-.14-.69l-2.3-1.8z"/></svg></div>
     <div class="logo-text"><div class="brand">Molub</div><div class="sub">CRM B2B</div></div>
   </div>
   <nav class="sidebar-nav">
@@ -216,7 +163,6 @@ tr:hover td{background:var(--off-white);}
   </header>
   <div class="content">
 
-    <!-- DASHBOARD -->
     <div class="view active" id="view-dashboard">
       <div class="metrics-grid">
         <div class="metric-card blue"><div class="metric-label">Total pedidos</div><div class="metric-value" id="m-total">—</div><div class="metric-sub">Registros en sistema</div><div class="metric-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/></svg></div></div>
@@ -230,11 +176,10 @@ tr:hover td{background:var(--off-white);}
       </div>
       <div class="card">
         <div class="card-header"><div><div class="card-title">Pedidos recientes</div><div class="card-sub">Últimos 5</div></div><button class="btn-secondary" style="font-size:12px;padding:6px 12px;" onclick="showView('pedidos',null)">Ver todos →</button></div>
-        <div class="table-wrap" style="border:none;border-radius:0;"><table><thead><tr><th>Pedido</th><th>Cliente</th><th>Ciudad</th><th>Productos</th><th>Monto</th><th>Estado</th></tr></thead><tbody id="recentOrders"><tr><td colspan="6"><div class="page-loader"><div class="spinner" style="border-color:var(--gray-200);border-top-color:var(--blue);width:20px;height:20px;"></div></div></td></tr></tbody></table></div>
+        <div class="table-wrap" style="border:none;border-radius:0;"><table><thead><tr><th>Pedido</th><th>Cliente</th><th>Ciudad</th><th>Productos</th><th>Monto</th><th>Estado</th></tr></thead><tbody id="recentOrders"></tbody></table></div>
       </div>
     </div>
 
-    <!-- PEDIDOS -->
     <div class="view" id="view-pedidos">
       <div class="table-toolbar">
         <div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" id="searchInput" placeholder="Buscar pedido, cliente..." oninput="filterTable()"></div>
@@ -244,17 +189,14 @@ tr:hover td{background:var(--off-white);}
       <div class="table-wrap"><table><thead><tr><th>ID</th><th>Fecha</th><th>Cliente</th><th>Ciudad</th><th>Productos</th><th>Presentación</th><th>Monto</th><th>Estado</th><th>Acciones</th></tr></thead><tbody id="pedidosTable"></tbody></table></div>
     </div>
 
-    <!-- PENDIENTES -->
     <div class="view" id="view-pendientes">
       <div class="table-wrap"><table><thead><tr><th>ID</th><th>Fecha</th><th>Cliente</th><th>Ciudad</th><th>Productos</th><th>Monto</th><th>Comprobante</th><th>Acción</th></tr></thead><tbody id="pendientesTable"></tbody></table></div>
     </div>
 
-    <!-- CLIENTES -->
     <div class="view" id="view-clientes">
       <div class="table-wrap"><table><thead><tr><th>Cliente</th><th>Correo</th><th>Teléfono</th><th>Ciudad</th><th>Pedidos</th><th>Monto total</th><th>Último pedido</th></tr></thead><tbody id="clientesTable"></tbody></table></div>
     </div>
 
-    <!-- CONFIG -->
     <div class="view" id="view-config">
       <div class="config-card">
         <div class="alert-info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span>Publica tu Sheet: <strong>Archivo → Compartir → Publicar en la web → Hoja 1 → CSV</strong></span></div>
@@ -266,7 +208,6 @@ tr:hover td{background:var(--off-white);}
   </div>
 </div>
 
-<!-- MODAL -->
 <div class="modal-overlay" id="modalOverlay" onclick="closeModalOut(event)">
   <div class="modal">
     <div class="modal-header">
@@ -360,7 +301,7 @@ function filterTable(){
 }
 function renderPend(){
   const p=allOrders.filter(o=>ek(o.estado)==='pendiente');
-  document.getElementById('pendientesTable').innerHTML=p.length?p.map(o=>{const i=allOrders.indexOf(o);return`<tr><td class="td-id">${o.id}</td><td style="font-size:11.5px;">${o.fecha}</td><td class="td-cliente">${o.cliente}</td><td>${o.ciudad}</td><td class="truncate">${o.productos}</td><td class="td-monto">${o.monto}</td><td>${o.comprobante&&o.comprobante.startsWith('http')?`<a href="${o.comprobante}" target="_blank" class="btn-link">Ver</a>`:'<span style="font-size:11px;color:var(--gray-400);">Sin archivo</span>'}</td><td><button class="btn-action validate" onclick="cambiar(${i},'Validado')">✓ Validar</button></td></tr>`;}).join(''):'<tr><td colspan="8"><div class="empty-state">Sin pendientes ✓</div></td></tr>';
+  document.getElementById('pendientesTable').innerHTML=p.length?p.map(o=>{const i=allOrders.indexOf(o);return`<tr><td class="td-id">${o.id}</td><td style="font-size:11.5px;">${o.fecha}</td><td class="td-cliente">${o.cliente}</td><td>${o.ciudad}</td><td class="truncate">${o.productos}</td><td class="td-monto">${o.monto}</td><td>${o.comprobante&&o.comprobante.startsWith('http')?`<a href="${o.comprobante}" target="_blank" class="btn-link">Ver</a>`:'<span style="font-size:11px;color:#9898a8;">Sin archivo</span>'}</td><td><button class="btn-action validate" onclick="cambiar(${i},'Validado')">✓ Validar</button></td></tr>`;}).join(''):'<tr><td colspan="8"><div class="empty-state">Sin pendientes ✓</div></td></tr>';
 }
 function renderClients(){
   const map={};allOrders.forEach(o=>{if(!map[o.cliente])map[o.cliente]={correo:o.correo,telefono:o.telefono,ciudad:o.ciudad,pedidos:0,monto:0,ultima:''};map[o.cliente].pedidos++;const n=parseFloat((o.monto||'0').replace(/[^0-9.]/g,''));if(!isNaN(n))map[o.cliente].monto+=n;if(!map[o.cliente].ultima||o.fecha>map[o.cliente].ultima)map[o.cliente].ultima=o.fecha;});
@@ -387,70 +328,119 @@ function imprimirNota(){
   const montoFmt=isNaN(montoNum)?o.monto:'$'+montoNum.toLocaleString('es-MX',{minimumFractionDigits:2});
   const prods=o.productos.split('|').map(p=>p.trim()).filter(Boolean);
   const pres=o.presentacion.split('|').map(p=>p.trim()).filter(Boolean);
-  const rows=prods.length?prods.map((p,i)=>`<tr><td>${i+1}</td><td>${p}</td><td>${pres[i]||'—'}</td><td style="text-align:right;">—</td><td style="text-align:right;">—</td></tr>`).join(''):`<tr><td>1</td><td>${o.productos}</td><td>${o.presentacion}</td><td style="text-align:right;">—</td><td style="text-align:right;">${montoFmt}</td></tr>`;
+  const tableRows=prods.length
+    ?prods.map((p,i)=>`<tr><td style="padding:3mm 4mm;border-bottom:1px solid #eee;color:#333;">${i+1}</td><td style="padding:3mm 4mm;border-bottom:1px solid #eee;color:#333;">${p}</td><td style="padding:3mm 4mm;border-bottom:1px solid #eee;color:#333;">${pres[i]||'—'}</td><td style="padding:3mm 4mm;border-bottom:1px solid #eee;color:#333;text-align:right;">—</td><td style="padding:3mm 4mm;border-bottom:1px solid #eee;color:#333;text-align:right;">—</td></tr>`).join('')
+    :`<tr><td style="padding:3mm 4mm;">1</td><td style="padding:3mm 4mm;">${o.productos}</td><td style="padding:3mm 4mm;">${o.presentacion}</td><td style="padding:3mm 4mm;text-align:right;">—</td><td style="padding:3mm 4mm;text-align:right;">${montoFmt}</td></tr>`;
 
-  const gearSVG=`<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.92c.04-.34.07-.68.07-1.08s-.03-.74-.07-1.08l2.3-1.8c.21-.16.27-.45.14-.69l-2.18-3.78c-.14-.23-.42-.32-.66-.23l-2.72 1.09c-.56-.43-1.17-.79-1.84-1.06L14.34 2.3c-.05-.26-.27-.45-.54-.45h-4.36c-.27 0-.49.19-.54.45L8.56 5.13c-.67.27-1.28.63-1.84 1.06L4 5.1c-.24-.09-.52 0-.66.23L1.16 9.11c-.13.24-.07.53.14.69l2.3 1.8C3.53 11.9 3.5 12.26 3.5 12.6s.03.7.1 1.08l-2.3 1.8c-.21.16-.27.45-.14.69l2.18 3.78c.14.23.42.32.66.23l2.72-1.09c.56.43 1.17.79 1.84 1.06l.34 2.83c.05.26.27.45.54.45h4.36c.27 0 .49-.19.54-.45l.34-2.83c.67-.27 1.28-.63 1.84-1.06l2.72 1.09c.24.09.52 0 .66-.23l2.18-3.78c.13-.24.07-.53-.14-.69l-2.3-1.8z"/></svg>`;
+  // Engranaje para marca de agua y elementos decorativos
+  const gearPath='M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.92c.04-.34.07-.68.07-1.08s-.03-.74-.07-1.08l2.3-1.8c.21-.16.27-.45.14-.69l-2.18-3.78c-.14-.23-.42-.32-.66-.23l-2.72 1.09c-.56-.43-1.17-.79-1.84-1.06L14.34 2.3c-.05-.26-.27-.45-.54-.45h-4.36c-.27 0-.49.19-.54.45L8.56 5.13c-.67.27-1.28.63-1.84 1.06L4 5.1c-.24-.09-.52 0-.66.23L1.16 9.11c-.13.24-.07.53.14.69l2.3 1.8C3.53 11.9 3.5 12.26 3.5 12.6s.03.7.1 1.08l-2.3 1.8c-.21.16-.27.45-.14.69l2.18 3.78c.14.23.42.32.66.23l2.72-1.09c.56.43 1.17.79 1.84 1.06l.34 2.83c.05.26.27.45.54.45h4.36c.27 0 .49-.19.54-.45l.34-2.83c.67-.27 1.28-.63 1.84-1.06l2.72 1.09c.24.09.52 0 .66-.23l2.18-3.78c.13-.24.07-.53-.14-.69l-2.3-1.8z';
 
   document.getElementById('printFrame').innerHTML=`
-  <div class="nota-page">
-    <div class="nota-header">
-      <div class="nota-bar-left"></div>
-      <div class="nota-center">
-        <div class="nota-molub">M<span class="nota-molub-gear" style="color:#0000FA;">${gearSVG}</span>lub</div>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@700&display=swap');
+  </style>
+  <div style="width:210mm;min-height:297mm;background:white;font-family:'DM Sans',Arial,sans-serif;color:#111;display:flex;flex-direction:column;position:relative;overflow:hidden;">
+
+    <!-- MARCA DE AGUA — engranaje azul desvanecido -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+      style="position:absolute;width:260mm;height:260mm;top:50%;left:50%;transform:translate(-50%,-50%);
+             opacity:0.04;fill:#0000FA;pointer-events:none;z-index:0;">
+      <path d="${gearPath}"/>
+    </svg>
+
+    <!-- HEADER -->
+    <div style="display:flex;align-items:stretch;border-bottom:3px solid #0000FA;position:relative;z-index:1;">
+      <div style="width:12mm;background:#0000FA;flex-shrink:0;"></div>
+      <div style="flex:1;padding:7mm 8mm;display:flex;align-items:center;">
+        <span style="font-size:30px;font-weight:700;color:#0a0a0f;letter-spacing:-0.5px;font-family:'DM Sans',Arial,sans-serif;">Molub</span>
       </div>
-      <div class="nota-right">
-        <span style="color:white;">${gearSVG}</span>
-        <div><div class="nota-synlox-name">SYNLOX</div><div class="nota-synlox-tag">The Smart Choice</div></div>
+      <div style="background:#0000FA;padding:5mm 8mm;display:flex;align-items:center;gap:8px;min-width:50mm;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:20px;height:20px;fill:white;flex-shrink:0;"><path d="${gearPath}"/></svg>
+        <div>
+          <div style="color:white;font-size:13px;font-weight:700;letter-spacing:1.5px;font-family:'DM Sans',Arial,sans-serif;">SYNLOX</div>
+          <div style="color:rgba(255,255,255,0.7);font-size:8px;font-family:'DM Sans',Arial,sans-serif;">The Smart Choice</div>
+        </div>
       </div>
     </div>
-    <div class="nota-body">
-      <div class="nota-title-row">
-        <div><div class="nota-doc-title">Nota de Pedido</div><div class="nota-doc-fecha">Fecha: ${o.fecha}</div></div>
-        <div class="nota-folio-box"><div class="nota-folio-label">Folio</div><div class="nota-folio-value">${o.id}</div></div>
+
+    <!-- BODY -->
+    <div style="padding:7mm 14mm;flex:1;position:relative;z-index:1;">
+
+      <!-- Título + folio -->
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6mm;padding-bottom:4mm;border-bottom:1.5px solid #0000FA;">
+        <div>
+          <div style="font-size:22px;font-weight:700;color:#0000FA;font-family:'DM Sans',Arial,sans-serif;">Nota de Pedido</div>
+          <div style="font-size:9px;color:#777;margin-top:3px;">Fecha: ${o.fecha}</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:8px;color:#aaa;text-transform:uppercase;letter-spacing:.08em;">Folio</div>
+          <div style="font-size:16px;font-weight:700;font-family:'Space Mono',monospace;color:#0a0a0f;">${o.id}</div>
+        </div>
       </div>
-      <div class="sec-title">Datos del cliente</div>
-      <div class="cliente-grid">
-        <div><div class="cf-label">Empresa / Cliente</div><div class="cf-value">${o.cliente}</div></div>
-        <div><div class="cf-label">Ciudad</div><div class="cf-value">${o.ciudad}</div></div>
-        <div><div class="cf-label">Correo electrónico</div><div class="cf-value">${o.correo}</div></div>
-        <div><div class="cf-label">Teléfono</div><div class="cf-value">${o.telefono}</div></div>
+
+      <!-- Datos del cliente -->
+      <div style="font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:#0000FA;font-weight:700;margin-bottom:3mm;">Datos del cliente</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2mm 6mm;background:#f5f5f7;border-radius:5px;padding:4mm 5mm;margin-bottom:6mm;">
+        <div><div style="font-size:7.5px;color:#aaa;text-transform:uppercase;letter-spacing:.04em;">Empresa / Cliente</div><div style="font-size:11px;font-weight:600;color:#0a0a0f;margin-top:1mm;">${o.cliente}</div></div>
+        <div><div style="font-size:7.5px;color:#aaa;text-transform:uppercase;letter-spacing:.04em;">Ciudad</div><div style="font-size:11px;font-weight:600;color:#0a0a0f;margin-top:1mm;">${o.ciudad}</div></div>
+        <div><div style="font-size:7.5px;color:#aaa;text-transform:uppercase;letter-spacing:.04em;">Correo electrónico</div><div style="font-size:11px;font-weight:600;color:#0a0a0f;margin-top:1mm;">${o.correo}</div></div>
+        <div><div style="font-size:7.5px;color:#aaa;text-transform:uppercase;letter-spacing:.04em;">Teléfono</div><div style="font-size:11px;font-weight:600;color:#0a0a0f;margin-top:1mm;">${o.telefono}</div></div>
       </div>
-      <div class="sec-title">Detalle del pedido</div>
-      <table class="nota-table">
-        <thead><tr><th>#</th><th>Producto</th><th>Presentación</th><th style="text-align:right;">P. Unit.</th><th style="text-align:right;">Total</th></tr></thead>
-        <tbody>${rows}</tbody>
+
+      <!-- Detalle del pedido -->
+      <div style="font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:#0000FA;font-weight:700;margin-bottom:3mm;">Detalle del pedido</div>
+      <table style="width:100%;border-collapse:collapse;margin-bottom:5mm;font-size:10px;">
+        <thead>
+          <tr style="background:#0000FA;color:white;">
+            <th style="padding:3mm 4mm;text-align:left;font-size:8px;text-transform:uppercase;letter-spacing:.06em;font-weight:600;width:8mm;">#</th>
+            <th style="padding:3mm 4mm;text-align:left;font-size:8px;text-transform:uppercase;letter-spacing:.06em;font-weight:600;">Producto</th>
+            <th style="padding:3mm 4mm;text-align:left;font-size:8px;text-transform:uppercase;letter-spacing:.06em;font-weight:600;">Presentación</th>
+            <th style="padding:3mm 4mm;text-align:right;font-size:8px;text-transform:uppercase;letter-spacing:.06em;font-weight:600;">P. Unit.</th>
+            <th style="padding:3mm 4mm;text-align:right;font-size:8px;text-transform:uppercase;letter-spacing:.06em;font-weight:600;">Total</th>
+          </tr>
+        </thead>
+        <tbody>${tableRows}</tbody>
       </table>
-      <div class="nota-totales">
-        <div class="nota-totales-box">
-          <div class="tot-row"><span>Subtotal</span><span>${montoFmt}</span></div>
-          <div class="tot-row"><span>IVA</span><span>Incluido</span></div>
-          <div class="tot-row"><span>TOTAL</span><span>${montoFmt}</span></div>
+
+      <!-- Totales -->
+      <div style="display:flex;justify-content:flex-end;margin-bottom:10mm;">
+        <div style="min-width:68mm;border:1px solid #e0e0e0;border-radius:5px;overflow:hidden;">
+          <div style="display:flex;justify-content:space-between;padding:2.5mm 4mm;font-size:10px;border-bottom:1px solid #f0f0f0;color:#555;"><span>Subtotal</span><span>${montoFmt}</span></div>
+          <div style="display:flex;justify-content:space-between;padding:2.5mm 4mm;font-size:10px;border-bottom:1px solid #f0f0f0;color:#555;"><span>IVA</span><span>Incluido</span></div>
+          <div style="display:flex;justify-content:space-between;padding:3.5mm 4mm;font-size:12px;font-weight:700;background:#0000FA;color:white;">
+            <span>TOTAL</span>
+            <span style="font-family:'Space Mono',monospace;">${montoFmt}</span>
+          </div>
         </div>
       </div>
-      <div class="nota-banco">
-        <div class="banco-title">Datos bancarios para transferencia</div>
-        <div class="banco-grid">
-          <div><div class="banco-label">Banco</div><div class="banco-value">BBVA México</div></div>
-          <div><div class="banco-label">Cuenta</div><div class="banco-value">0120308560</div></div>
-          <div><div class="banco-label">CLABE</div><div class="banco-value">012456001203085609</div></div>
+
+      <!-- Firma única — Molub con sello -->
+      <div style="display:flex;justify-content:center;margin-top:6mm;">
+        <div style="text-align:center;width:90mm;">
+          <div style="height:22mm;border-bottom:1.5px dashed #ccc;margin-bottom:3mm;position:relative;">
+            <div style="position:absolute;right:4mm;top:50%;transform:translateY(-50%);width:20mm;height:20mm;border:1.5px dashed #ccc;border-radius:50%;display:flex;align-items:center;justify-content:center;">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:14px;height:14px;fill:#e0e0e0;"><path d="${gearPath}"/></svg>
+            </div>
+          </div>
+          <div style="font-size:9.5px;color:#444;font-family:'DM Sans',Arial,sans-serif;font-weight:500;">Autorizado por — Molub Lubricantes</div>
         </div>
       </div>
-      <div class="nota-firmas">
-        <div class="firma-box"><div class="firma-space"><div class="firma-sello">SELLO</div></div><div class="firma-line">Autorizado por — Molub Lubricantes</div></div>
-        <div class="firma-box"><div class="firma-space"></div><div class="firma-line">Recibido por — Cliente</div></div>
-      </div>
+
     </div>
-    <div class="nota-footer-bar">
-      <div class="footer-left">
-        <div style="color:white;opacity:.8;">${gearSVG}</div>
-        <div class="footer-synlox-name">SYNLOX</div>
+
+    <!-- FOOTER -->
+    <div style="background:#1a1a1a;padding:4mm 14mm;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;margin-top:auto;">
+      <div style="display:flex;align-items:center;gap:6mm;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:16px;height:16px;fill:#555;"><path d="${gearPath}"/></svg>
+        <div style="font-size:9px;color:#aaa;font-weight:700;letter-spacing:1px;font-family:'DM Sans',Arial,sans-serif;">SYNLOX</div>
       </div>
-      <div class="footer-contact">
+      <div style="font-size:8px;color:#666;line-height:2;text-align:right;font-family:'DM Sans',Arial,sans-serif;">
         ventas@molub.com.mx &nbsp;|&nbsp; 55 6073 8675<br>
         Plant/Puebla &nbsp;|&nbsp; Office/CDMX — 55 1542 1728<br>
-        <span class="footer-url">www.molub.com.mx</span>
+        <span style="color:#0000FA;font-weight:700;font-size:8.5px;">www.molub.com.mx</span>
       </div>
     </div>
+
   </div>`;
   window.print();
 }
