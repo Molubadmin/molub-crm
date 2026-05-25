@@ -10,6 +10,29 @@
 :root{--blue:#0000FA;--blue-dim:#0000c4;--blue-ghost:rgba(0,0,250,0.07);--off-white:#f4f4f6;--gray-100:#ececf0;--gray-200:#d8d8e0;--gray-400:#9898a8;--gray-600:#555560;--black:#0a0a0f;--green:#00c97a;--amber:#f5a623;--red:#e5533a;--sidebar-w:240px;--radius:10px;--shadow-lg:0 8px 40px rgba(0,0,0,0.13);}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--black);min-height:100vh;display:flex;overflow-x:hidden;}
+
+/* ── LOGIN ── */
+#loginScreen{position:fixed;inset:0;background:var(--black);z-index:999;display:flex;align-items:center;justify-content:center;}
+#loginScreen.hidden{display:none;}
+.login-box{background:#111;border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:40px 36px;width:360px;max-width:95vw;}
+.login-logo{display:flex;align-items:center;gap:12px;margin-bottom:32px;}
+.login-logo-icon{width:42px;height:42px;background:var(--blue);border-radius:10px;display:flex;align-items:center;justify-content:center;}
+.login-logo-icon svg{width:24px;height:24px;fill:white;}
+.login-logo-text .brand{font-size:18px;font-weight:700;color:white;}
+.login-logo-text .sub{font-size:10px;color:var(--gray-400);text-transform:uppercase;letter-spacing:.08em;}
+.login-title{font-size:20px;font-weight:700;color:white;margin-bottom:6px;}
+.login-sub{font-size:13px;color:var(--gray-400);margin-bottom:28px;}
+.login-field{margin-bottom:16px;}
+.login-label{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gray-400);font-weight:600;margin-bottom:6px;display:block;}
+.login-input{width:100%;padding:10px 14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;font-size:14px;color:white;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .15s;}
+.login-input:focus{border-color:var(--blue);}
+.login-input::placeholder{color:var(--gray-400);}
+.login-btn{width:100%;padding:11px;background:var(--blue);color:white;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;margin-top:8px;transition:background .15s;}
+.login-btn:hover{background:var(--blue-dim);}
+.login-error{font-size:12px;color:var(--red);margin-top:10px;min-height:18px;text-align:center;}
+.login-footer{margin-top:24px;text-align:center;font-size:11px;color:var(--gray-400);}
+
+/* ── SIDEBAR ── */
 .sidebar{width:var(--sidebar-w);min-height:100vh;background:var(--black);display:flex;flex-direction:column;position:fixed;top:0;left:0;z-index:100;}
 .sidebar-logo{padding:24px 20px 20px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:12px;}
 .logo-icon{width:38px;height:38px;background:var(--blue);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
@@ -22,10 +45,19 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--bl
 .nav-item svg{width:16px;height:16px;flex-shrink:0;}
 .nav-item:hover{background:rgba(255,255,255,0.05);color:white;}
 .nav-item.active{background:var(--blue-ghost);color:var(--blue);border:1px solid rgba(0,0,250,0.2);}
-.sidebar-footer{padding:16px 12px;border-top:1px solid rgba(255,255,255,0.06);}
+.sidebar-user{padding:12px 16px;border-top:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:10px;}
+.user-avatar{width:32px;height:32px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;flex-shrink:0;}
+.user-name{font-size:12px;font-weight:500;color:white;flex:1;}
+.user-role{font-size:10px;color:var(--gray-400);}
+.logout-btn{background:none;border:none;cursor:pointer;color:var(--gray-400);padding:4px;border-radius:4px;display:flex;align-items:center;}
+.logout-btn:hover{color:var(--red);}
+.logout-btn svg{width:14px;height:14px;}
+.sidebar-footer{padding:12px 12px;border-top:1px solid rgba(255,255,255,0.06);}
 .sync-btn{display:flex;align-items:center;gap:8px;width:100%;padding:9px 12px;background:var(--blue);color:white;border:none;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;}
 .sync-btn:hover{background:var(--blue-dim);}
 .sync-btn svg{width:14px;height:14px;}
+
+/* ── MAIN ── */
 .main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;}
 .topbar{height:64px;background:white;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:50;}
 .topbar-title{font-size:15px;font-weight:600;}
@@ -112,36 +144,23 @@ tr:hover td{background:var(--off-white);}
 .estado-btn.active-proceso{background:rgba(0,0,250,.1);border-color:var(--blue);color:var(--blue);}
 .estado-btn.active-enviado{background:rgba(245,166,35,.12);border-color:var(--amber);color:#b87a00;}
 .estado-btn.active-completado{background:rgba(0,201,122,.12);border-color:var(--green);color:#007a4c;}
-
-/* Guía input — aparece solo al seleccionar Enviado */
 .guia-box{margin-top:10px;display:none;}
 .guia-box.visible{display:block;}
 .guia-input{width:100%;padding:8px 12px;border:1px solid var(--gray-200);border-radius:7px;font-size:13px;font-family:'Space Mono',monospace;color:var(--black);outline:none;}
 .guia-input:focus{border-color:var(--amber);}
 .saving-indicator{font-size:11px;color:var(--gray-400);margin-top:8px;min-height:16px;}
-
-/* Mensaje libre */
 .msg-textarea{width:100%;padding:10px 12px;border:1px solid var(--gray-200);border-radius:7px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--black);outline:none;resize:vertical;min-height:90px;line-height:1.5;}
 .msg-textarea:focus{border-color:var(--blue);}
 .msg-asunto{width:100%;padding:8px 12px;border:1px solid var(--gray-200);border-radius:7px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--black);outline:none;margin-bottom:8px;}
 .msg-asunto:focus{border-color:var(--blue);}
-.msg-send-btn{margin-top:10px;padding:8px 16px;background:var(--blue);color:white;border:none;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:6px;transition:background .12s;}
+.msg-send-btn{margin-top:10px;padding:8px 16px;background:var(--blue);color:white;border:none;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:6px;}
 .msg-send-btn:hover{background:var(--blue-dim);}
 .msg-indicator{font-size:11px;color:var(--gray-400);margin-top:6px;min-height:16px;}
-
 .modal-footer{padding:16px 24px;border-top:1px solid var(--gray-100);display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;}
 .btn-primary{padding:8px 16px;background:var(--blue);color:white;border:none;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:6px;text-decoration:none;}
 .btn-primary:hover{background:var(--blue-dim);}
 .btn-secondary{padding:8px 16px;background:white;color:var(--gray-600);border:1px solid var(--gray-200);border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;}
 .btn-print{padding:8px 16px;background:var(--black);color:white;border:none;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:6px;}
-.config-card{max-width:560px;background:white;border-radius:var(--radius);border:1px solid var(--gray-100);padding:28px;}
-.config-field{margin-bottom:18px;}
-.config-label{font-size:12px;font-weight:600;color:var(--black);margin-bottom:6px;display:block;}
-.config-hint{font-size:11.5px;color:var(--gray-400);margin-top:4px;}
-.config-input{width:100%;padding:9px 12px;border:1px solid var(--gray-200);border-radius:7px;font-size:13px;font-family:'Space Mono',monospace;color:var(--black);outline:none;}
-.config-input:focus{border-color:var(--blue);}
-.alert-info{padding:12px 14px;border-radius:7px;font-size:12.5px;margin-bottom:16px;background:var(--blue-ghost);border:1px solid rgba(0,0,250,.15);color:var(--blue);display:flex;gap:8px;align-items:flex-start;}
-.alert-info svg{width:14px;height:14px;flex-shrink:0;margin-top:1px;}
 .spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:white;border-radius:50%;animation:spin .7s linear infinite;display:inline-block;}
 .spinner-dark{width:12px;height:12px;border:2px solid var(--gray-200);border-top-color:var(--blue);border-radius:50%;animation:spin .7s linear infinite;display:inline-block;}
 @keyframes spin{to{transform:rotate(360deg);}}
@@ -158,6 +177,30 @@ tr:hover td{background:var(--off-white);}
 </head>
 <body>
 
+<!-- ═══ LOGIN ═══ -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="login-logo-icon"><svg viewBox="0 0 24 24"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.92c.04-.34.07-.68.07-1.08s-.03-.74-.07-1.08l2.3-1.8c.21-.16.27-.45.14-.69l-2.18-3.78c-.14-.23-.42-.32-.66-.23l-2.72 1.09c-.56-.43-1.17-.79-1.84-1.06L14.34 2.3c-.05-.26-.27-.45-.54-.45h-4.36c-.27 0-.49.19-.54.45L8.56 5.13c-.67.27-1.28.63-1.84 1.06L4 5.1c-.24-.09-.52 0-.66.23L1.16 9.11c-.13.24-.07.53.14.69l2.3 1.8C3.53 11.9 3.5 12.26 3.5 12.6s.03.7.1 1.08l-2.3 1.8c-.21.16-.27.45-.14.69l2.18 3.78c.14.23.42.32.66.23l2.72-1.09c.56.43 1.17.79 1.84 1.06l.34 2.83c.05.26.27.45.54.45h4.36c.27 0 .49-.19.54-.45l.34-2.83c.67-.27 1.28-.63 1.84-1.06l2.72 1.09c.24.09.52 0 .66-.23l2.18-3.78c.13-.24.07-.53-.14-.69l-2.3-1.8z"/></svg></div>
+      <div class="login-logo-text"><div class="brand">Molub</div><div class="sub">CRM B2B</div></div>
+    </div>
+    <div class="login-title">Bienvenido</div>
+    <div class="login-sub">Ingresa tus credenciales para continuar</div>
+    <div class="login-field">
+      <label class="login-label">Usuario</label>
+      <input class="login-input" type="text" id="loginUser" placeholder="Tu nombre de usuario" autocomplete="username" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <div class="login-field">
+      <label class="login-label">Contraseña</label>
+      <input class="login-input" type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="login-btn" onclick="doLogin()">Iniciar sesión</button>
+    <div class="login-error" id="loginError"></div>
+    <div class="login-footer">Molub Lubricantes · Sistema interno</div>
+  </div>
+</div>
+
+<!-- ═══ SIDEBAR ═══ -->
 <aside class="sidebar">
   <div class="sidebar-logo">
     <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.92c.04-.34.07-.68.07-1.08s-.03-.74-.07-1.08l2.3-1.8c.21-.16.27-.45.14-.69l-2.18-3.78c-.14-.23-.42-.32-.66-.23l-2.72 1.09c-.56-.43-1.17-.79-1.84-1.06L14.34 2.3c-.05-.26-.27-.45-.54-.45h-4.36c-.27 0-.49.19-.54.45L8.56 5.13c-.67.27-1.28.63-1.84 1.06L4 5.1c-.24-.09-.52 0-.66.23L1.16 9.11c-.13.24-.07.53.14.69l2.3 1.8C3.53 11.9 3.5 12.26 3.5 12.6s.03.7.1 1.08l-2.3 1.8c-.21.16-.27.45-.14.69l2.18 3.78c.14.23.42.32.66.23l2.72-1.09c.56.43 1.17.79 1.84 1.06l.34 2.83c.05.26.27.45.54.45h4.36c.27 0 .49-.19.54-.45l.34-2.83c.67-.27 1.28-.63 1.84-1.06l2.72 1.09c.24.09.52 0 .66-.23l2.18-3.78c.13-.24.07-.53-.14-.69l-2.3-1.8z"/></svg></div>
@@ -169,9 +212,12 @@ tr:hover td{background:var(--off-white);}
     <button class="nav-item" onclick="showView('pedidos',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2"/></svg>Pedidos</button>
     <button class="nav-item" onclick="showView('pendientes',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Pendientes</button>
     <button class="nav-item" onclick="showView('clientes',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Clientes</button>
-    <div class="nav-label" style="margin-top:12px;">Sistema</div>
-    <button class="nav-item" onclick="showView('config',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83"/></svg>Configuración</button>
   </nav>
+  <div class="sidebar-user">
+    <div class="user-avatar" id="userAvatar">?</div>
+    <div><div class="user-name" id="userName">—</div><div class="user-role">Equipo Molub</div></div>
+    <button class="logout-btn" onclick="doLogout()" title="Cerrar sesión"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg></button>
+  </div>
   <div class="sidebar-footer">
     <button class="sync-btn" id="syncBtn" onclick="loadData()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>Sincronizar datos
@@ -179,6 +225,7 @@ tr:hover td{background:var(--off-white);}
   </div>
 </aside>
 
+<!-- ═══ MAIN ═══ -->
 <div class="main">
   <header class="topbar">
     <div><div class="topbar-title" id="topbarTitle">Dashboard</div><div class="topbar-sub" id="topbarSub">Resumen general de pedidos</div></div>
@@ -233,16 +280,6 @@ tr:hover td{background:var(--off-white);}
       <div class="table-wrap"><table><thead><tr><th>Cliente</th><th>Correo</th><th>Teléfono</th><th>Ciudad</th><th>Pedidos</th><th>Monto total</th><th>Último pedido</th></tr></thead><tbody id="clientesTable"></tbody></table></div>
     </div>
 
-    <!-- CONFIG -->
-    <div class="view" id="view-config">
-      <div class="config-card">
-        <div class="alert-info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><span>Sheet: <strong>Archivo → Compartir → Publicar en la web → Hoja 1 → CSV</strong></span></div>
-        <div class="config-field"><label class="config-label">URL del Google Sheet (CSV)</label><input class="config-input" type="text" id="sheetUrl" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv"><div class="config-hint">Para leer los pedidos</div></div>
-        <div class="config-field"><label class="config-label">URL del Apps Script (Web App)</label><input class="config-input" type="text" id="scriptUrl" placeholder="https://script.google.com/macros/s/.../exec"><div class="config-hint">Para actualizar estados y enviar correos al cliente</div></div>
-        <div class="config-field"><label class="config-label" style="font-family:'DM Sans',sans-serif;">Nombre de la tienda</label><input class="config-input" type="text" id="storeName" placeholder="Molub Lubricantes" style="font-family:'DM Sans',sans-serif;"></div>
-        <button class="btn-primary" onclick="saveConfig()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="14" height="14"><polyline points="20 6 9 17 4 12"/></svg>Guardar y conectar</button>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -254,38 +291,29 @@ tr:hover td{background:var(--off-white);}
       <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
     <div class="modal-body" id="modalBody"></div>
-
-    <!-- CAMBIAR ESTADO -->
     <div class="section-box" style="margin-bottom:12px;">
       <div class="section-title">Cambiar estado del pedido</div>
       <div class="estado-btns">
-        <button class="estado-btn" data-estado="Por revisar"  onclick="cambiarEstadoModal(this)">🔍 Por revisar</button>
-        <button class="estado-btn" data-estado="En proceso"   onclick="cambiarEstadoModal(this)">🔄 En proceso</button>
-        <button class="estado-btn" data-estado="Enviado"      onclick="cambiarEstadoModal(this)">🚚 Enviado</button>
-        <button class="estado-btn" data-estado="Completado"   onclick="cambiarEstadoModal(this)">✅ Completado</button>
+        <button class="estado-btn" data-estado="Por revisar" onclick="cambiarEstadoModal(this)">🔍 Por revisar</button>
+        <button class="estado-btn" data-estado="En proceso" onclick="cambiarEstadoModal(this)">🔄 En proceso</button>
+        <button class="estado-btn" data-estado="Enviado" onclick="cambiarEstadoModal(this)">🚚 Enviado</button>
+        <button class="estado-btn" data-estado="Completado" onclick="cambiarEstadoModal(this)">✅ Completado</button>
       </div>
-      <!-- Campo número de guía — solo aparece con Enviado -->
       <div class="guia-box" id="guiaBox">
         <input class="guia-input" type="text" id="guiaInput" placeholder="Número de guía (ej. 1Z999AA10123456784)">
         <div style="font-size:11px;color:var(--gray-400);margin-top:4px;">Se incluirá en el correo al cliente</div>
       </div>
       <div class="saving-indicator" id="savingIndicator"></div>
     </div>
-
-    <!-- ENVIAR MENSAJE LIBRE -->
     <div class="section-box" style="margin-bottom:16px;">
       <div class="section-title">✉️ Enviar mensaje al cliente</div>
-      <input class="msg-asunto" type="text" id="msgAsunto" placeholder="Asunto del correo (ej. Información sobre tu pedido)">
-      <textarea class="msg-textarea" id="msgTexto" placeholder="Escribe aquí tu mensaje... Puedes incluir número de guía, aclaraciones, instrucciones de entrega, etc."></textarea>
+      <input class="msg-asunto" type="text" id="msgAsunto" placeholder="Asunto del correo">
+      <textarea class="msg-textarea" id="msgTexto" placeholder="Escribe aquí tu mensaje..."></textarea>
       <div style="display:flex;align-items:center;gap:10px;">
-        <button class="msg-send-btn" onclick="enviarMensaje()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-          Enviar correo
-        </button>
+        <button class="msg-send-btn" onclick="enviarMensaje()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Enviar correo</button>
         <div class="msg-indicator" id="msgIndicator"></div>
       </div>
     </div>
-
     <div class="modal-footer">
       <button class="btn-secondary" onclick="closeModal()">Cerrar</button>
       <a class="btn-primary" id="btnComprobante" href="#" target="_blank" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Ver comprobante</a>
@@ -298,18 +326,62 @@ tr:hover td{background:var(--off-white);}
 <div class="toast" id="toast"></div>
 
 <script>
-let allOrders=[],filteredOrders=[],currentOrder=null,currentIdx=-1;
-const CFG='molub_crm_v4';
-function getConfig(){try{return JSON.parse(localStorage.getItem(CFG))||{};}catch{return{};}}
-function saveConfig(){
-  const url=document.getElementById('sheetUrl').value.trim();
-  const sUrl=document.getElementById('scriptUrl').value.trim();
-  const store=document.getElementById('storeName').value.trim();
-  if(!url||!sUrl){showToast('Ingresa ambas URLs','error');return;}
-  localStorage.setItem(CFG,JSON.stringify({sheetUrl:url,scriptUrl:sUrl,storeName:store}));
-  showToast('Configuración guardada','success');loadData();
+// ═══════════════════════════════════════════════════════════
+// CONFIGURACIÓN — URLs hardcodeadas y usuarios
+// ═══════════════════════════════════════════════════════════
+const CONFIG = {
+  sheetUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT3bcnhev2v03IHmXfn5aJOoUVyamh50nC0AZzpKbSFWlXbKZ9jmF7-fs8oDF8jWGKeuhVcJVRSqPD5/pub?gid=0&single=true&output=csv',
+  scriptUrl: 'https://script.google.com/macros/s/AKfycbwLQv_Zg2KXEi9V-jNtg3KguhMQvJ2nNhWE8e4ibaPshFpxepko3JAcJxWXBww7of79/exec'
+};
+
+const USUARIOS = [
+  { user: 'admin',          pass: 'Molub2026#',   nombre: 'Administrador' },
+  { user: 'susana.rosas',   pass: 'Susana@CRM1',  nombre: 'Susana Rosas' },
+  { user: 'arlette.alva',   pass: 'Arlette@CRM2', nombre: 'Arlette Alva' },
+  { user: 'sergio.corral',  pass: 'Sergio@CRM3',  nombre: 'Sergio Corral' },
+  { user: 'yuri.orozco',    pass: 'Yuri@CRM4',    nombre: 'Yuri Orozco' }
+];
+
+const SESSION_KEY = 'molub_session';
+
+// ─── LOGIN ─────────────────────────────────────────────────
+function doLogin(){
+  const u=document.getElementById('loginUser').value.trim().toLowerCase();
+  const p=document.getElementById('loginPass').value;
+  const match=USUARIOS.find(x=>x.user.toLowerCase()===u && x.pass===p);
+  if(!match){document.getElementById('loginError').textContent='Usuario o contraseña incorrectos';return;}
+  localStorage.setItem(SESSION_KEY,JSON.stringify({user:match.user,nombre:match.nombre,ts:Date.now()}));
+  document.getElementById('loginError').textContent='';
+  initSession(match.nombre);
 }
-const VM={dashboard:{title:'Dashboard',sub:'Resumen general de pedidos'},pedidos:{title:'Todos los pedidos',sub:'Historial completo'},pendientes:{title:'Pendientes',sub:'Por revisar y en proceso'},clientes:{title:'Clientes',sub:'Directorio de compradores'},config:{title:'Configuración',sub:'Conexión al Google Sheet y Apps Script'}};
+
+function initSession(nombre){
+  document.getElementById('loginScreen').classList.add('hidden');
+  document.getElementById('userName').textContent=nombre;
+  document.getElementById('userAvatar').textContent=nombre.charAt(0).toUpperCase();
+  loadData();
+}
+
+function doLogout(){
+  localStorage.removeItem(SESSION_KEY);
+  document.getElementById('loginScreen').classList.remove('hidden');
+  document.getElementById('loginUser').value='';
+  document.getElementById('loginPass').value='';
+  allOrders=[];filteredOrders=[];
+}
+
+function checkSession(){
+  try{
+    const s=JSON.parse(localStorage.getItem(SESSION_KEY));
+    if(s && s.nombre){initSession(s.nombre);return;}
+  }catch{}
+  // Sin sesión — mostrar login
+}
+
+// ─── CRM ───────────────────────────────────────────────────
+let allOrders=[],filteredOrders=[],currentOrder=null,currentIdx=-1;
+
+const VM={dashboard:{title:'Dashboard',sub:'Resumen general de pedidos'},pedidos:{title:'Todos los pedidos',sub:'Historial completo'},pendientes:{title:'Pendientes',sub:'Por revisar y en proceso'},clientes:{title:'Clientes',sub:'Directorio de compradores'}};
 function showView(name,btn){
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
@@ -317,15 +389,14 @@ function showView(name,btn){
   if(btn)btn.classList.add('active');
   document.getElementById('topbarTitle').textContent=VM[name].title;
   document.getElementById('topbarSub').textContent=VM[name].sub;
-  if(name==='config'){const c=getConfig();document.getElementById('sheetUrl').value=c.sheetUrl||'';document.getElementById('scriptUrl').value=c.scriptUrl||'';document.getElementById('storeName').value=c.storeName||'';}
 }
+
 async function loadData(){
-  const cfg=getConfig();
-  if(!cfg.sheetUrl){showToast('Configura la URL primero','error');showView('config',null);return;}
   const btn=document.getElementById('syncBtn');
   btn.innerHTML='<div class="spinner"></div> Cargando...';
   try{
-    const res=await fetch(cfg.sheetUrl);const text=await res.text();
+    const res=await fetch(CONFIG.sheetUrl);
+    const text=await res.text();
     allOrders=parseCSV(text);filteredOrders=[...allOrders];
     setStatus(true);renderAll();
     document.getElementById('lastSync').textContent='Sync '+new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
@@ -333,6 +404,7 @@ async function loadData(){
   }catch{setStatus(false);showToast('Error al cargar el Sheet','error');}
   btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg> Sincronizar datos';
 }
+
 function parseCSV(text){
   const lines=text.trim().split('\n');const rows=[];
   for(let i=1;i<lines.length;i++){const c=splitCSV(lines[i]);if(!c[0]||!c[0].trim())continue;rows.push({id:c[0]||'',fecha:c[1]||'',cliente:c[2]||'',correo:c[3]||'',telefono:c[4]||'',ciudad:c[5]||'',productos:c[6]||'',presentacion:c[7]||'',monto:c[8]||'',estado:c[9]||'Por revisar',comprobante:c[10]||''});}
@@ -341,17 +413,8 @@ function parseCSV(text){
 function splitCSV(line){const r=[];let cur='',q=false;for(let i=0;i<line.length;i++){const c=line[i];if(c==='"'&&q&&line[i+1]==='"'){cur+='"';i++;}else if(c==='"'){q=!q;}else if(c===','&&!q){r.push(cur.trim());cur='';}else{cur+=c;}}r.push(cur.trim());return r;}
 function setStatus(ok){document.getElementById('statusDot').className='dot'+(ok?' connected':'');document.getElementById('statusText').textContent=ok?'Conectado':'Sin conectar';}
 
-function ek(e){
-  const s=(e||'').toLowerCase();
-  if(s.includes('proceso'))return'proceso';
-  if(s.includes('enviado'))return'enviado';
-  if(s.includes('complet'))return'completado';
-  return'revisar';
-}
-function badge(e){
-  const k=ek(e);
-  return{revisar:'<span class="badge badge-revisar">🔍 Por revisar</span>',proceso:'<span class="badge badge-proceso">🔄 En proceso</span>',enviado:'<span class="badge badge-enviado">🚚 Enviado</span>',completado:'<span class="badge badge-completado">✅ Completado</span>'}[k];
-}
+function ek(e){const s=(e||'').toLowerCase();if(s.includes('proceso'))return'proceso';if(s.includes('enviado'))return'enviado';if(s.includes('complet'))return'completado';return'revisar';}
+function badge(e){const k=ek(e);return{revisar:'<span class="badge badge-revisar">🔍 Por revisar</span>',proceso:'<span class="badge badge-proceso">🔄 En proceso</span>',enviado:'<span class="badge badge-enviado">🚚 Enviado</span>',completado:'<span class="badge badge-completado">✅ Completado</span>'}[k];}
 function estadoColor(k){return{revisar:'#9898a8',proceso:'#0000FA',enviado:'#f5a623',completado:'#00c97a'}[k]||'#999';}
 
 function renderAll(){renderDash();renderTabla(allOrders);renderPend();renderClients();}
@@ -387,7 +450,7 @@ function filterTable(){
 }
 function renderPend(){
   const p=allOrders.filter(o=>ek(o.estado)==='revisar'||ek(o.estado)==='proceso'||ek(o.estado)==='enviado');
-  document.getElementById('pendientesTable').innerHTML=p.length?p.map(o=>{const i=allOrders.indexOf(o);return`<tr><td class="td-id">${o.id}</td><td style="font-size:11.5px;">${o.fecha}</td><td class="td-cliente">${o.cliente}</td><td>${o.ciudad}</td><td class="truncate">${o.productos}</td><td class="td-monto">${o.monto}</td><td>${o.comprobante&&o.comprobante.startsWith('http')?`<a href="${o.comprobante}" target="_blank" class="btn-link">Ver</a>`:'<span style="font-size:11px;color:#9898a8;">Sin archivo</span>'}</td><td>${badge(o.estado)}</td></tr>`;}).join(''):'<tr><td colspan="8"><div class="empty-state">Sin pedidos pendientes ✓</div></td></tr>';
+  document.getElementById('pendientesTable').innerHTML=p.length?p.map(o=>`<tr><td class="td-id">${o.id}</td><td style="font-size:11.5px;">${o.fecha}</td><td class="td-cliente">${o.cliente}</td><td>${o.ciudad}</td><td class="truncate">${o.productos}</td><td class="td-monto">${o.monto}</td><td>${o.comprobante&&o.comprobante.startsWith('http')?`<a href="${o.comprobante}" target="_blank" class="btn-link">Ver</a>`:'<span style="font-size:11px;color:#9898a8;">Sin archivo</span>'}</td><td>${badge(o.estado)}</td></tr>`).join(''):'<tr><td colspan="8"><div class="empty-state">Sin pedidos pendientes ✓</div></td></tr>';
 }
 function renderClients(){
   const map={};allOrders.forEach(o=>{if(!map[o.cliente])map[o.cliente]={correo:o.correo,telefono:o.telefono,ciudad:o.ciudad,pedidos:0,monto:0,ultima:''};map[o.cliente].pedidos++;const n=parseFloat((o.monto||'0').replace(/[^0-9.]/g,''));if(!isNaN(n))map[o.cliente].monto+=n;if(!map[o.cliente].ultima||o.fecha>map[o.cliente].ultima)map[o.cliente].ultima=o.fecha;});
@@ -395,32 +458,18 @@ function renderClients(){
   document.getElementById('clientesTable').innerHTML=rows.length?rows.map(([n,d])=>`<tr><td class="td-cliente">${n}</td><td style="font-size:12px;">${d.correo}</td><td class="mono" style="font-size:12px;">${d.telefono}</td><td>${d.ciudad}</td><td class="td-monto" style="font-size:13px;">${d.pedidos}</td><td class="td-monto">$${d.monto.toLocaleString('es-MX',{minimumFractionDigits:2})}</td><td style="font-size:12px;">${d.ultima}</td></tr>`).join(''):'<tr><td colspan="7"><div class="empty-state">Sin clientes</div></td></tr>';
 }
 
-// ── MODAL ─────────────────────────────────────────────────
 function openModal(i){
   const o=allOrders[i];currentOrder=o;currentIdx=i;
   document.getElementById('modalTitle').textContent='Pedido '+o.id;
   document.getElementById('modalSub').textContent=o.fecha+' · '+o.cliente;
-  document.getElementById('modalBody').innerHTML=[
-    ['Cliente',o.cliente],['Correo',o.correo],['Teléfono',o.telefono],
-    ['Ciudad',o.ciudad],['Productos',o.productos],['Presentación',o.presentacion],
-    ['Monto total',o.monto],['Estado actual',badge(o.estado)]
-  ].map(([k,v])=>`<div class="modal-row"><div class="modal-key">${k}</div><div class="modal-val">${v}</div></div>`).join('');
-
-  // Marcar botón activo
-  const est=o.estado;
-  document.querySelectorAll('.estado-btn').forEach(btn=>{
-    btn.className='estado-btn';
-    if(btn.dataset.estado===est) btn.classList.add('active-'+ek(est));
-  });
-
-  // Mostrar/ocultar campo de guía
+  document.getElementById('modalBody').innerHTML=[['Cliente',o.cliente],['Correo',o.correo],['Teléfono',o.telefono],['Ciudad',o.ciudad],['Productos',o.productos],['Presentación',o.presentacion],['Monto total',o.monto],['Estado actual',badge(o.estado)]].map(([k,v])=>`<div class="modal-row"><div class="modal-key">${k}</div><div class="modal-val">${v}</div></div>`).join('');
+  document.querySelectorAll('.estado-btn').forEach(btn=>{btn.className='estado-btn';if(btn.dataset.estado===o.estado)btn.classList.add('active-'+ek(o.estado));});
   document.getElementById('guiaBox').classList.remove('visible');
   document.getElementById('guiaInput').value='';
   document.getElementById('savingIndicator').textContent='';
   document.getElementById('msgAsunto').value='';
   document.getElementById('msgTexto').value='';
   document.getElementById('msgIndicator').textContent='';
-
   const cb=document.getElementById('btnComprobante');
   if(o.comprobante&&o.comprobante.startsWith('http')){cb.href=o.comprobante;cb.style.display='inline-flex';}else{cb.style.display='none';}
   document.getElementById('modalOverlay').classList.add('open');
@@ -428,43 +477,26 @@ function openModal(i){
 function closeModalOut(e){if(e.target===document.getElementById('modalOverlay'))closeModal();}
 function closeModal(){document.getElementById('modalOverlay').classList.remove('open');}
 
-// ── CAMBIAR ESTADO ────────────────────────────────────────
 async function cambiarEstadoModal(btn){
   if(!currentOrder)return;
   const nuevoEstado=btn.dataset.estado;
   const ind=document.getElementById('savingIndicator');
   ind.innerHTML='<span class="spinner-dark"></span> Guardando...';
-
   document.querySelectorAll('.estado-btn').forEach(b=>b.className='estado-btn');
   btn.classList.add('active-'+ek(nuevoEstado));
-
-  // Mostrar campo de guía solo para Enviado
-  document.getElementById('guiaBox').classList.toggle('visible', nuevoEstado==='Enviado');
-
-  allOrders[currentIdx].estado=nuevoEstado;
-  currentOrder.estado=nuevoEstado;
-
-  const cfg=getConfig();
-  if(!cfg.scriptUrl){ind.textContent='⚠️ Configura la URL del Apps Script.';renderAll();return;}
-
+  document.getElementById('guiaBox').classList.toggle('visible',nuevoEstado==='Enviado');
+  allOrders[currentIdx].estado=nuevoEstado;currentOrder.estado=nuevoEstado;
   try{
     const guia=document.getElementById('guiaInput').value.trim();
-    let url=cfg.scriptUrl+'?action=updateEstado&id='+encodeURIComponent(currentOrder.id)+'&estado='+encodeURIComponent(nuevoEstado);
-    if(guia) url+='&guia='+encodeURIComponent(guia);
-    const res=await fetch(url);
-    const data=await res.json();
-    if(data.result==='success'){
-      ind.textContent='✓ Actualizado en Sheet'+(nuevoEstado!=='Por revisar'?' · Correo enviado al cliente':'');
-      showToast('Estado: '+nuevoEstado,'success');
-    }else{
-      ind.textContent='⚠️ '+data.message;
-      showToast('Error al actualizar','error');
-    }
+    let url=CONFIG.scriptUrl+'?action=updateEstado&id='+encodeURIComponent(currentOrder.id)+'&estado='+encodeURIComponent(nuevoEstado);
+    if(guia)url+='&guia='+encodeURIComponent(guia);
+    const res=await fetch(url);const data=await res.json();
+    if(data.result==='success'){ind.textContent='✓ Actualizado en Sheet'+(nuevoEstado!=='Por revisar'?' · Correo enviado al cliente':'');showToast('Estado: '+nuevoEstado,'success');}
+    else{ind.textContent='⚠️ '+data.message;showToast('Error al actualizar','error');}
   }catch{ind.textContent='⚠️ Error de conexión';showToast('Error de conexión','error');}
   renderAll();
 }
 
-// ── ENVIAR MENSAJE LIBRE ──────────────────────────────────
 async function enviarMensaje(){
   if(!currentOrder)return;
   const asunto=document.getElementById('msgAsunto').value.trim();
@@ -472,25 +504,14 @@ async function enviarMensaje(){
   const ind=document.getElementById('msgIndicator');
   if(!mensaje){showToast('Escribe un mensaje primero','error');return;}
   ind.innerHTML='<span class="spinner-dark"></span> Enviando...';
-  const cfg=getConfig();
-  if(!cfg.scriptUrl){ind.textContent='⚠️ Configura la URL del Apps Script.';return;}
   try{
-    const url=cfg.scriptUrl+'?action=sendMessage&id='+encodeURIComponent(currentOrder.id)+'&asunto='+encodeURIComponent(asunto||'Mensaje sobre tu pedido — Molub')+'&mensaje='+encodeURIComponent(mensaje);
-    const res=await fetch(url);
-    const data=await res.json();
-    if(data.result==='success'){
-      ind.textContent='✓ Correo enviado a '+currentOrder.correo;
-      document.getElementById('msgTexto').value='';
-      document.getElementById('msgAsunto').value='';
-      showToast('Correo enviado al cliente','success');
-    }else{
-      ind.textContent='⚠️ '+data.message;
-      showToast('Error al enviar','error');
-    }
+    const url=CONFIG.scriptUrl+'?action=sendMessage&id='+encodeURIComponent(currentOrder.id)+'&asunto='+encodeURIComponent(asunto||'Mensaje sobre tu pedido — Molub')+'&mensaje='+encodeURIComponent(mensaje);
+    const res=await fetch(url);const data=await res.json();
+    if(data.result==='success'){ind.textContent='✓ Correo enviado a '+currentOrder.correo;document.getElementById('msgTexto').value='';document.getElementById('msgAsunto').value='';showToast('Correo enviado al cliente','success');}
+    else{ind.textContent='⚠️ '+data.message;showToast('Error al enviar','error');}
   }catch{ind.textContent='⚠️ Error de conexión';showToast('Error de conexión','error');}
 }
 
-// ── IMPRIMIR NOTA ─────────────────────────────────────────
 function imprimirNota(){
   if(!currentOrder)return;
   const o=currentOrder;
@@ -500,61 +521,13 @@ function imprimirNota(){
   const pres=o.presentacion.split('|').map(p=>p.trim()).filter(Boolean);
   const tableRows=prods.length?prods.map((p,i)=>`<tr><td style="padding:3mm 4mm;border-bottom:1px solid #eee;">${i+1}</td><td style="padding:3mm 4mm;border-bottom:1px solid #eee;">${p}</td><td style="padding:3mm 4mm;border-bottom:1px solid #eee;">${pres[i]||'—'}</td><td style="padding:3mm 4mm;border-bottom:1px solid #eee;text-align:right;">—</td><td style="padding:3mm 4mm;border-bottom:1px solid #eee;text-align:right;">—</td></tr>`).join(''):`<tr><td style="padding:3mm 4mm;">1</td><td style="padding:3mm 4mm;">${o.productos}</td><td style="padding:3mm 4mm;">${o.presentacion}</td><td style="padding:3mm 4mm;text-align:right;">—</td><td style="padding:3mm 4mm;text-align:right;">${montoFmt}</td></tr>`;
   const gP='M12 15.5A3.5 3.5 0 0 1 8.5 12 3.5 3.5 0 0 1 12 8.5a3.5 3.5 0 0 1 3.5 3.5 3.5 3.5 0 0 1-3.5 3.5m7.43-2.92c.04-.34.07-.68.07-1.08s-.03-.74-.07-1.08l2.3-1.8c.21-.16.27-.45.14-.69l-2.18-3.78c-.14-.23-.42-.32-.66-.23l-2.72 1.09c-.56-.43-1.17-.79-1.84-1.06L14.34 2.3c-.05-.26-.27-.45-.54-.45h-4.36c-.27 0-.49.19-.54.45L8.56 5.13c-.67.27-1.28.63-1.84 1.06L4 5.1c-.24-.09-.52 0-.66.23L1.16 9.11c-.13.24-.07.53.14.69l2.3 1.8C3.53 11.9 3.5 12.26 3.5 12.6s.03.7.1 1.08l-2.3 1.8c-.21.16-.27.45-.14.69l2.18 3.78c.14.23.42.32.66.23l2.72-1.09c.56.43 1.17.79 1.84 1.06l.34 2.83c.05.26.27.45.54.45h4.36c.27 0 .49-.19.54-.45l.34-2.83c.67-.27 1.28-.63 1.84-1.06l2.72 1.09c.24.09.52 0 .66-.23l2.18-3.78c.13-.24.07-.53-.14-.69l-2.3-1.8z';
-  document.getElementById('printFrame').innerHTML=`
-  <style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@700&display=swap');</style>
-  <div style="width:210mm;min-height:297mm;background:white;font-family:'DM Sans',Arial,sans-serif;color:#111;display:flex;flex-direction:column;position:relative;overflow:hidden;">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="position:absolute;width:260mm;height:260mm;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.04;fill:#0000FA;pointer-events:none;z-index:0;"><path d="${gP}"/></svg>
-    <div style="display:flex;align-items:stretch;border-bottom:3px solid #0000FA;position:relative;z-index:1;">
-      <div style="width:12mm;background:#0000FA;flex-shrink:0;"></div>
-      <div style="flex:1;padding:7mm 8mm;display:flex;align-items:center;"><span style="font-size:30px;font-weight:700;color:#0a0a0f;letter-spacing:-0.5px;">Molub</span></div>
-      <div style="background:#0000FA;padding:5mm 8mm;display:flex;align-items:center;gap:8px;min-width:50mm;">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:20px;height:20px;fill:white;flex-shrink:0;"><path d="${gP}"/></svg>
-        <div><div style="color:white;font-size:13px;font-weight:700;letter-spacing:1.5px;">SYNLOX</div><div style="color:rgba(255,255,255,0.7);font-size:8px;">The Smart Choice</div></div>
-      </div>
-    </div>
-    <div style="padding:7mm 14mm;flex:1;position:relative;z-index:1;">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6mm;padding-bottom:4mm;border-bottom:1.5px solid #0000FA;">
-        <div><div style="font-size:22px;font-weight:700;color:#0000FA;">Nota de Pedido</div><div style="font-size:9px;color:#777;margin-top:3px;">Fecha: ${o.fecha}</div></div>
-        <div style="text-align:right;"><div style="font-size:8px;color:#aaa;text-transform:uppercase;letter-spacing:.08em;">Folio</div><div style="font-size:16px;font-weight:700;font-family:'Space Mono',monospace;color:#0a0a0f;">${o.id}</div></div>
-      </div>
-      <div style="font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:#0000FA;font-weight:700;margin-bottom:3mm;">Datos del cliente</div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2mm 6mm;background:#f5f5f7;border-radius:5px;padding:4mm 5mm;margin-bottom:6mm;">
-        <div><div style="font-size:7.5px;color:#aaa;text-transform:uppercase;">Empresa / Cliente</div><div style="font-size:11px;font-weight:600;color:#0a0a0f;margin-top:1mm;">${o.cliente}</div></div>
-        <div><div style="font-size:7.5px;color:#aaa;text-transform:uppercase;">Ciudad</div><div style="font-size:11px;font-weight:600;color:#0a0a0f;margin-top:1mm;">${o.ciudad}</div></div>
-        <div><div style="font-size:7.5px;color:#aaa;text-transform:uppercase;">Correo</div><div style="font-size:11px;font-weight:600;color:#0a0a0f;margin-top:1mm;">${o.correo}</div></div>
-        <div><div style="font-size:7.5px;color:#aaa;text-transform:uppercase;">Teléfono</div><div style="font-size:11px;font-weight:600;color:#0a0a0f;margin-top:1mm;">${o.telefono}</div></div>
-      </div>
-      <div style="font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:#0000FA;font-weight:700;margin-bottom:3mm;">Detalle del pedido</div>
-      <table style="width:100%;border-collapse:collapse;margin-bottom:5mm;font-size:10px;">
-        <thead><tr style="background:#0000FA;color:white;"><th style="padding:3mm 4mm;text-align:left;font-size:8px;text-transform:uppercase;font-weight:600;width:8mm;">#</th><th style="padding:3mm 4mm;text-align:left;font-size:8px;text-transform:uppercase;font-weight:600;">Producto</th><th style="padding:3mm 4mm;text-align:left;font-size:8px;text-transform:uppercase;font-weight:600;">Presentación</th><th style="padding:3mm 4mm;text-align:right;font-size:8px;text-transform:uppercase;font-weight:600;">P. Unit.</th><th style="padding:3mm 4mm;text-align:right;font-size:8px;text-transform:uppercase;font-weight:600;">Total</th></tr></thead>
-        <tbody>${tableRows}</tbody>
-      </table>
-      <div style="display:flex;justify-content:flex-end;margin-bottom:10mm;">
-        <div style="min-width:68mm;border:1px solid #e0e0e0;border-radius:5px;overflow:hidden;">
-          <div style="display:flex;justify-content:space-between;padding:2.5mm 4mm;font-size:10px;border-bottom:1px solid #f0f0f0;color:#555;"><span>Subtotal</span><span>${montoFmt}</span></div>
-          <div style="display:flex;justify-content:space-between;padding:2.5mm 4mm;font-size:10px;border-bottom:1px solid #f0f0f0;color:#555;"><span>IVA</span><span>Incluido</span></div>
-          <div style="display:flex;justify-content:space-between;padding:3.5mm 4mm;font-size:12px;font-weight:700;background:#0000FA;color:white;"><span>TOTAL</span><span style="font-family:'Space Mono',monospace;">${montoFmt}</span></div>
-        </div>
-      </div>
-      <div style="display:flex;justify-content:center;margin-top:6mm;">
-        <div style="text-align:center;width:90mm;">
-          <div style="height:22mm;border-bottom:1.5px dashed #ccc;margin-bottom:3mm;position:relative;">
-            <div style="position:absolute;right:4mm;top:50%;transform:translateY(-50%);width:20mm;height:20mm;border:1.5px dashed #ccc;border-radius:50%;display:flex;align-items:center;justify-content:center;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:14px;height:14px;fill:#e0e0e0;"><path d="${gP}"/></svg></div>
-          </div>
-          <div style="font-size:9.5px;color:#444;font-weight:500;">Autorizado por — Molub Lubricantes</div>
-        </div>
-      </div>
-    </div>
-    <div style="background:#1a1a1a;padding:4mm 14mm;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;margin-top:auto;">
-      <div style="display:flex;align-items:center;gap:6mm;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:16px;height:16px;fill:#555;"><path d="${gP}"/></svg><div style="font-size:9px;color:#aaa;font-weight:700;letter-spacing:1px;">SYNLOX</div></div>
-      <div style="font-size:8px;color:#666;line-height:2;text-align:right;">ventas@molub.com.mx &nbsp;|&nbsp; 55 6073 8675<br>Plant/Puebla &nbsp;|&nbsp; Office/CDMX — 55 1542 1728<br><span style="color:#0000FA;font-weight:700;font-size:8.5px;">www.molub.com.mx</span></div>
-    </div>
-  </div>`;
+  document.getElementById('printFrame').innerHTML=`<style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@700&display=swap');</style><div style="width:210mm;min-height:297mm;background:white;font-family:'DM Sans',Arial,sans-serif;color:#111;display:flex;flex-direction:column;position:relative;overflow:hidden;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="position:absolute;width:260mm;height:260mm;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.04;fill:#0000FA;pointer-events:none;z-index:0;"><path d="${gP}"/></svg><div style="display:flex;align-items:stretch;border-bottom:3px solid #0000FA;position:relative;z-index:1;"><div style="width:12mm;background:#0000FA;flex-shrink:0;"></div><div style="flex:1;padding:7mm 8mm;display:flex;align-items:center;"><span style="font-size:30px;font-weight:700;color:#0a0a0f;letter-spacing:-0.5px;">Molub</span></div><div style="background:#0000FA;padding:5mm 8mm;display:flex;align-items:center;gap:8px;min-width:50mm;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:20px;height:20px;fill:white;flex-shrink:0;"><path d="${gP}"/></svg><div><div style="color:white;font-size:13px;font-weight:700;letter-spacing:1.5px;">SYNLOX</div><div style="color:rgba(255,255,255,0.7);font-size:8px;">The Smart Choice</div></div></div></div><div style="padding:7mm 14mm;flex:1;position:relative;z-index:1;"><div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6mm;padding-bottom:4mm;border-bottom:1.5px solid #0000FA;"><div><div style="font-size:22px;font-weight:700;color:#0000FA;">Nota de Pedido</div><div style="font-size:9px;color:#777;margin-top:3px;">Fecha: ${o.fecha}</div></div><div style="text-align:right;"><div style="font-size:8px;color:#aaa;text-transform:uppercase;letter-spacing:.08em;">Folio</div><div style="font-size:16px;font-weight:700;font-family:'Space Mono',monospace;color:#0a0a0f;">${o.id}</div></div></div><div style="font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:#0000FA;font-weight:700;margin-bottom:3mm;">Datos del cliente</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:2mm 6mm;background:#f5f5f7;border-radius:5px;padding:4mm 5mm;margin-bottom:6mm;"><div><div style="font-size:7.5px;color:#aaa;text-transform:uppercase;">Empresa / Cliente</div><div style="font-size:11px;font-weight:600;color:#0a0a0f;margin-top:1mm;">${o.cliente}</div></div><div><div style="font-size:7.5px;color:#aaa;text-transform:uppercase;">Ciudad</div><div style="font-size:11px;font-weight:600;color:#0a0a0f;margin-top:1mm;">${o.ciudad}</div></div><div><div style="font-size:7.5px;color:#aaa;text-transform:uppercase;">Correo</div><div style="font-size:11px;font-weight:600;color:#0a0a0f;margin-top:1mm;">${o.correo}</div></div><div><div style="font-size:7.5px;color:#aaa;text-transform:uppercase;">Teléfono</div><div style="font-size:11px;font-weight:600;color:#0a0a0f;margin-top:1mm;">${o.telefono}</div></div></div><div style="font-size:8px;text-transform:uppercase;letter-spacing:.1em;color:#0000FA;font-weight:700;margin-bottom:3mm;">Detalle del pedido</div><table style="width:100%;border-collapse:collapse;margin-bottom:5mm;font-size:10px;"><thead><tr style="background:#0000FA;color:white;"><th style="padding:3mm 4mm;text-align:left;font-size:8px;text-transform:uppercase;font-weight:600;width:8mm;">#</th><th style="padding:3mm 4mm;text-align:left;font-size:8px;text-transform:uppercase;font-weight:600;">Producto</th><th style="padding:3mm 4mm;text-align:left;font-size:8px;text-transform:uppercase;font-weight:600;">Presentación</th><th style="padding:3mm 4mm;text-align:right;font-size:8px;text-transform:uppercase;font-weight:600;">P. Unit.</th><th style="padding:3mm 4mm;text-align:right;font-size:8px;text-transform:uppercase;font-weight:600;">Total</th></tr></thead><tbody>${tableRows}</tbody></table><div style="display:flex;justify-content:flex-end;margin-bottom:10mm;"><div style="min-width:68mm;border:1px solid #e0e0e0;border-radius:5px;overflow:hidden;"><div style="display:flex;justify-content:space-between;padding:2.5mm 4mm;font-size:10px;border-bottom:1px solid #f0f0f0;color:#555;"><span>Subtotal</span><span>${montoFmt}</span></div><div style="display:flex;justify-content:space-between;padding:2.5mm 4mm;font-size:10px;border-bottom:1px solid #f0f0f0;color:#555;"><span>IVA</span><span>Incluido</span></div><div style="display:flex;justify-content:space-between;padding:3.5mm 4mm;font-size:12px;font-weight:700;background:#0000FA;color:white;"><span>TOTAL</span><span style="font-family:'Space Mono',monospace;">${montoFmt}</span></div></div></div><div style="display:flex;justify-content:center;margin-top:6mm;"><div style="text-align:center;width:90mm;"><div style="height:22mm;border-bottom:1.5px dashed #ccc;margin-bottom:3mm;position:relative;"><div style="position:absolute;right:4mm;top:50%;transform:translateY(-50%);width:20mm;height:20mm;border:1.5px dashed #ccc;border-radius:50%;display:flex;align-items:center;justify-content:center;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:14px;height:14px;fill:#e0e0e0;"><path d="${gP}"/></svg></div></div><div style="font-size:9.5px;color:#444;font-weight:500;">Autorizado por — Molub Lubricantes</div></div></div></div><div style="background:#1a1a1a;padding:4mm 14mm;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;margin-top:auto;"><div style="display:flex;align-items:center;gap:6mm;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="width:16px;height:16px;fill:#555;"><path d="${gP}"/></svg><div style="font-size:9px;color:#aaa;font-weight:700;letter-spacing:1px;">SYNLOX</div></div><div style="font-size:8px;color:#666;line-height:2;text-align:right;">ventas@molub.com.mx &nbsp;|&nbsp; 55 6073 8675<br>Plant/Puebla &nbsp;|&nbsp; Office/CDMX — 55 1542 1728<br><span style="color:#0000FA;font-weight:700;font-size:8.5px;">www.molub.com.mx</span></div></div></div>`;
   window.print();
 }
 
 function showToast(msg,type='success'){const t=document.getElementById('toast');t.textContent=msg;t.className='toast '+type+' show';setTimeout(()=>t.classList.remove('show'),3000);}
-window.addEventListener('DOMContentLoaded',()=>{const cfg=getConfig();if(cfg.sheetUrl){loadData();}else{showView('config',null);showToast('Configura tu Google Sheet primero','error');}});
+
+window.addEventListener('DOMContentLoaded', checkSession);
 </script>
 </body>
 </html>
