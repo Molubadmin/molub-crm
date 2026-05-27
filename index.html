@@ -10,8 +10,6 @@
 :root{--blue:#0000FA;--blue-dim:#0000c4;--blue-ghost:rgba(0,0,250,0.07);--off-white:#f4f4f6;--gray-100:#ececf0;--gray-200:#d8d8e0;--gray-400:#9898a8;--gray-600:#555560;--black:#0a0a0f;--green:#00c97a;--amber:#f5a623;--red:#e5533a;--sidebar-w:240px;--radius:10px;--shadow-lg:0 8px 40px rgba(0,0,0,0.13);}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--black);min-height:100vh;display:flex;overflow-x:hidden;}
-
-/* LOGIN */
 #loginScreen{position:fixed;inset:0;background:var(--black);z-index:999;display:flex;align-items:center;justify-content:center;}
 #loginScreen.hidden{display:none;}
 .login-box{background:#111;border:1px solid rgba(255,255,255,0.08);border-radius:16px;padding:40px 36px;width:360px;max-width:95vw;}
@@ -31,8 +29,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--bl
 .login-btn:hover{background:var(--blue-dim);}
 .login-error{font-size:12px;color:var(--red);margin-top:10px;min-height:18px;text-align:center;}
 .login-footer{margin-top:24px;text-align:center;font-size:11px;color:var(--gray-400);}
-
-/* SIDEBAR */
 .sidebar{width:var(--sidebar-w);min-height:100vh;background:var(--black);display:flex;flex-direction:column;position:fixed;top:0;left:0;z-index:100;}
 .sidebar-logo{padding:24px 20px 20px;border-bottom:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;gap:12px;}
 .logo-icon{width:38px;height:38px;background:var(--blue);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
@@ -56,8 +52,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--off-white);color:var(--bl
 .sync-btn{display:flex;align-items:center;gap:8px;width:100%;padding:9px 12px;background:var(--blue);color:white;border:none;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;}
 .sync-btn:hover{background:var(--blue-dim);}
 .sync-btn svg{width:14px;height:14px;}
-
-/* MAIN */
 .main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;}
 .topbar{height:64px;background:white;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:50;}
 .topbar-title{font-size:15px;font-weight:600;}
@@ -120,6 +114,7 @@ tr:hover td{background:var(--off-white);}
 .badge-enviado{background:rgba(124,58,237,.12);color:#6d28d9;}
 .badge-completado{background:rgba(0,201,122,.12);color:#007a4c;}
 .btn-link{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--blue);text-decoration:none;font-weight:500;padding:4px 8px;border-radius:5px;border:1px solid rgba(0,0,250,.2);white-space:nowrap;}
+.btn-link.green{color:#00a86b;border-color:rgba(0,168,107,.3);}
 .btn-action{padding:4px 8px;border-radius:5px;border:1px solid var(--gray-200);background:white;cursor:pointer;font-size:12px;color:var(--gray-600);font-family:'DM Sans',sans-serif;transition:all .12s;display:inline-flex;align-items:center;gap:4px;}
 .btn-action:hover{border-color:var(--blue);color:var(--blue);}
 .modal-overlay{position:fixed;inset:0;background:rgba(10,10,15,.55);z-index:200;display:none;align-items:center;justify-content:center;backdrop-filter:blur(3px);}
@@ -136,8 +131,6 @@ tr:hover td{background:var(--off-white);}
 .modal-row:last-child{border-bottom:none;}
 .modal-key{color:var(--gray-400);font-weight:500;flex-shrink:0;min-width:130px;}
 .modal-val{color:var(--black);font-weight:500;text-align:right;}
-
-/* SECCIÓN ESTADO */
 .section-box{background:var(--off-white);border-radius:var(--radius);padding:16px 18px;margin:0 24px 8px;}
 .section-title{font-size:10px;text-transform:uppercase;letter-spacing:.08em;color:var(--gray-400);font-weight:600;margin-bottom:12px;}
 .estado-btns{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
@@ -148,14 +141,10 @@ tr:hover td{background:var(--off-white);}
 .estado-btn.sel-preparando{background:rgba(0,0,250,.1);border-color:var(--blue);color:var(--blue);}
 .estado-btn.sel-enviado{background:rgba(124,58,237,.1);border-color:#7c3aed;color:#6d28d9;}
 .estado-btn.sel-completado{background:rgba(0,201,122,.12);border-color:var(--green);color:#007a4c;}
-
-/* Guía */
 .guia-box{display:none;margin-bottom:12px;}
 .guia-box.visible{display:block;}
 .guia-input{width:100%;padding:8px 12px;border:1px solid var(--gray-200);border-radius:7px;font-size:13px;font-family:'Space Mono',monospace;color:var(--black);outline:none;}
 .guia-input:focus{border-color:#7c3aed;}
-
-/* Botones de acción del estado */
 .estado-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
 .btn-save-estado{padding:8px 16px;background:var(--black);color:white;border:none;border-radius:7px;font-size:12.5px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:6px;transition:background .12s;}
 .btn-save-estado:hover{background:#222;}
@@ -164,8 +153,6 @@ tr:hover td{background:var(--off-white);}
 .btn-notify:disabled{background:var(--gray-200);color:var(--gray-400);cursor:not-allowed;}
 .estado-hint{font-size:11px;color:var(--gray-400);width:100%;margin-top:4px;}
 .saving-indicator{font-size:11px;color:var(--gray-400);margin-top:6px;min-height:16px;}
-
-/* Mensaje libre */
 .msg-textarea{width:100%;padding:10px 12px;border:1px solid var(--gray-200);border-radius:7px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--black);outline:none;resize:vertical;min-height:80px;line-height:1.5;}
 .msg-textarea:focus{border-color:var(--blue);}
 .msg-asunto{width:100%;padding:8px 12px;border:1px solid var(--gray-200);border-radius:7px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--black);outline:none;margin-bottom:8px;}
@@ -173,7 +160,6 @@ tr:hover td{background:var(--off-white);}
 .msg-send-btn{margin-top:10px;padding:8px 16px;background:var(--blue);color:white;border:none;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:6px;}
 .msg-send-btn:hover{background:var(--blue-dim);}
 .msg-indicator{font-size:11px;color:var(--gray-400);margin-top:6px;min-height:16px;}
-
 .modal-footer{padding:16px 24px;border-top:1px solid var(--gray-100);display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;}
 .btn-primary{padding:8px 16px;background:var(--blue);color:white;border:none;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:6px;text-decoration:none;}
 .btn-primary:hover{background:var(--blue-dim);}
@@ -283,9 +269,9 @@ tr:hover td{background:var(--off-white);}
       <div class="table-wrap"><table><thead><tr><th>ID</th><th>Fecha</th><th>Cliente</th><th>Ciudad</th><th>Productos</th><th>Presentación</th><th>Monto</th><th>Estado</th><th>Acciones</th></tr></thead><tbody id="pedidosTable"></tbody></table></div>
     </div>
 
-    <!-- PENDIENTES -->
+    <!-- PENDIENTES — CAMBIO 3: columna CSF agregada -->
     <div class="view" id="view-pendientes">
-      <div class="table-wrap"><table><thead><tr><th>ID</th><th>Fecha</th><th>Cliente</th><th>Ciudad</th><th>Productos</th><th>Monto</th><th>Comprobante</th><th>Estado</th></tr></thead><tbody id="pendientesTable"></tbody></table></div>
+      <div class="table-wrap"><table><thead><tr><th>ID</th><th>Fecha</th><th>Cliente</th><th>Ciudad</th><th>Productos</th><th>Monto</th><th>Comprobante</th><th>CSF</th><th>Estado</th></tr></thead><tbody id="pendientesTable"></tbody></table></div>
     </div>
 
     <!-- CLIENTES -->
@@ -303,8 +289,6 @@ tr:hover td{background:var(--off-white);}
       <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
     <div class="modal-body" id="modalBody"></div>
-
-    <!-- CAMBIAR ESTADO -->
     <div class="section-box" style="margin-bottom:8px;">
       <div class="section-title">Cambiar estado del pedido</div>
       <div class="estado-btns">
@@ -314,14 +298,10 @@ tr:hover td{background:var(--off-white);}
         <button class="estado-btn" data-estado="Enviado"          data-key="enviado"     onclick="selEstado(this)">🚚 Enviado</button>
         <button class="estado-btn" data-estado="Completado"       data-key="completado"  onclick="selEstado(this)">✅ Completado</button>
       </div>
-
-      <!-- Número de guía (solo Enviado) -->
       <div class="guia-box" id="guiaBox">
         <input class="guia-input" type="text" id="guiaInput" placeholder="Número de guía (ej. 794644793588)">
         <div style="font-size:11px;color:var(--gray-400);margin-top:4px;">Se incluirá en el correo al cliente al notificar</div>
       </div>
-
-      <!-- Acciones separadas -->
       <div class="estado-actions">
         <button class="btn-save-estado" onclick="guardarEstado()">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
@@ -335,8 +315,6 @@ tr:hover td{background:var(--off-white);}
       <div class="estado-hint">💡 <strong>Guardar estado</strong> actualiza el Sheet sin enviar correo. <strong>Guardar y notificar</strong> actualiza y envía correo al cliente.</div>
       <div class="saving-indicator" id="savingIndicator"></div>
     </div>
-
-    <!-- MENSAJE LIBRE -->
     <div class="section-box" style="margin-bottom:16px;">
       <div class="section-title">✉️ Enviar mensaje al cliente</div>
       <input class="msg-asunto" type="text" id="msgAsunto" placeholder="Asunto del correo">
@@ -346,10 +324,11 @@ tr:hover td{background:var(--off-white);}
         <div class="msg-indicator" id="msgIndicator"></div>
       </div>
     </div>
-
+    <!-- CAMBIO 5: botón Ver CSF en verde -->
     <div class="modal-footer">
       <button class="btn-secondary" onclick="closeModal()">Cerrar</button>
       <a class="btn-primary" id="btnComprobante" href="#" target="_blank" style="display:none;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Ver comprobante</a>
+      <a class="btn-primary" id="btnCSF" href="#" target="_blank" style="display:none;background:#00a86b;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Ver CSF</a>
       <button class="btn-print" onclick="imprimirNota()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>Imprimir nota</button>
     </div>
   </div>
@@ -359,7 +338,6 @@ tr:hover td{background:var(--off-white);}
 <div class="toast" id="toast"></div>
 
 <script>
-// ═══ CONFIG ═══════════════════════════════════════════════
 const CONFIG = {
   sheetUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT3bcnhev2v03IHmXfn5aJOoUVyamh50nC0AZzpKbSFWlXbKZ9jmF7-fs8oDF8jWGKeuhVcJVRSqPD5/pub?gid=0&single=true&output=csv',
   scriptUrl: 'https://script.google.com/macros/s/AKfycbwLQv_Zg2KXEi9V-jNtg3KguhMQvJ2nNhWE8e4ibaPshFpxepko3JAcJxWXBww7of79/exec'
@@ -375,7 +353,6 @@ const USUARIOS = [
 
 const SESSION_KEY = 'molub_session';
 
-// ═══ LOGIN ════════════════════════════════════════════════
 function doLogin(){
   const u=document.getElementById('loginUser').value.trim().toLowerCase();
   const p=document.getElementById('loginPass').value;
@@ -401,9 +378,7 @@ function checkSession(){
   try{const s=JSON.parse(localStorage.getItem(SESSION_KEY));if(s&&s.nombre){initSession(s.nombre);return;}}catch{}
 }
 
-// ═══ CRM ══════════════════════════════════════════════════
 let allOrders=[],filteredOrders=[],currentOrder=null,currentIdx=-1,estadoSeleccionado=null;
-
 const VM={dashboard:{title:'Dashboard',sub:'Resumen general de pedidos'},pedidos:{title:'Todos los pedidos',sub:'Historial completo'},pendientes:{title:'Pendientes',sub:'Pedidos activos'},clientes:{title:'Clientes',sub:'Directorio de compradores'}};
 
 function showView(name,btn){
@@ -429,9 +404,10 @@ async function loadData(){
   btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg> Sincronizar datos';
 }
 
+// CAMBIO 1: csf:c[11]||'' agregado
 function parseCSV(text){
   const lines=text.trim().split('\n');const rows=[];
-  for(let i=1;i<lines.length;i++){const c=splitCSV(lines[i]);if(!c[0]||!c[0].trim())continue;rows.push({id:c[0]||'',fecha:c[1]||'',cliente:c[2]||'',correo:c[3]||'',telefono:c[4]||'',ciudad:c[5]||'',productos:c[6]||'',presentacion:c[7]||'',monto:c[8]||'',estado:c[9]||'Por revisar',comprobante:c[10]||''});}
+  for(let i=1;i<lines.length;i++){const c=splitCSV(lines[i]);if(!c[0]||!c[0].trim())continue;rows.push({id:c[0]||'',fecha:c[1]||'',cliente:c[2]||'',correo:c[3]||'',telefono:c[4]||'',ciudad:c[5]||'',productos:c[6]||'',presentacion:c[7]||'',monto:c[8]||'',estado:c[9]||'Por revisar',comprobante:c[10]||'',csf:c[11]||''});}
   return rows;
 }
 function splitCSV(line){const r=[];let cur='',q=false;for(let i=0;i<line.length;i++){const c=line[i];if(c==='"'&&q&&line[i+1]==='"'){cur+='"';i++;}else if(c==='"'){q=!q;}else if(c===','&&!q){r.push(cur.trim());cur='';}else{cur+=c;}}r.push(cur.trim());return r;}
@@ -492,9 +468,10 @@ function filterTable(){
   renderTabla(filteredOrders);
 }
 
+// CAMBIO 2: columna CSF en tabla pendientes
 function renderPend(){
   const p=allOrders.filter(o=>ek(o.estado)!=='completado');
-  document.getElementById('pendientesTable').innerHTML=p.length?p.map(o=>`<tr><td class="td-id">${o.id}</td><td style="font-size:11.5px;">${o.fecha}</td><td class="td-cliente">${o.cliente}</td><td>${o.ciudad}</td><td class="truncate">${o.productos}</td><td class="td-monto">${o.monto}</td><td>${o.comprobante&&o.comprobante.startsWith('http')?`<a href="${o.comprobante}" target="_blank" class="btn-link">Ver</a>`:'<span style="font-size:11px;color:#9898a8;">Sin archivo</span>'}</td><td>${badge(o.estado)}</td></tr>`).join(''):'<tr><td colspan="8"><div class="empty-state">Sin pedidos pendientes ✓</div></td></tr>';
+  document.getElementById('pendientesTable').innerHTML=p.length?p.map(o=>`<tr><td class="td-id">${o.id}</td><td style="font-size:11.5px;">${o.fecha}</td><td class="td-cliente">${o.cliente}</td><td>${o.ciudad}</td><td class="truncate">${o.productos}</td><td class="td-monto">${o.monto}</td><td>${o.comprobante&&o.comprobante.startsWith('http')?`<a href="${o.comprobante}" target="_blank" class="btn-link">Ver</a>`:'<span style="font-size:11px;color:#9898a8;">Sin archivo</span>'}</td><td>${o.csf&&o.csf.startsWith('http')?`<a href="${o.csf}" target="_blank" class="btn-link green">Ver CSF</a>`:'<span style="font-size:11px;color:#9898a8;">Sin CSF</span>'}</td><td>${badge(o.estado)}</td></tr>`).join(''):'<tr><td colspan="9"><div class="empty-state">Sin pedidos pendientes ✓</div></td></tr>';
 }
 
 function renderClients(){
@@ -503,7 +480,7 @@ function renderClients(){
   document.getElementById('clientesTable').innerHTML=rows.length?rows.map(([n,d])=>`<tr><td class="td-cliente">${n}</td><td style="font-size:12px;">${d.correo}</td><td class="mono" style="font-size:12px;">${d.telefono}</td><td>${d.ciudad}</td><td class="td-monto" style="font-size:13px;">${d.pedidos}</td><td class="td-monto">$${d.monto.toLocaleString('es-MX',{minimumFractionDigits:2})}</td><td style="font-size:12px;">${d.ultima}</td></tr>`).join(''):'<tr><td colspan="7"><div class="empty-state">Sin clientes</div></td></tr>';
 }
 
-// ═══ MODAL ════════════════════════════════════════════════
+// CAMBIO 4: btnCSF en openModal
 function openModal(i){
   const o=allOrders[i];currentOrder=o;currentIdx=i;estadoSeleccionado=o.estado;
   document.getElementById('modalTitle').textContent='Pedido '+o.id;
@@ -513,32 +490,27 @@ function openModal(i){
     ['Ciudad',o.ciudad],['Productos',o.productos],['Presentación',o.presentacion],
     ['Monto total',o.monto],['Estado actual',badge(o.estado)]
   ].map(([k,v])=>`<div class="modal-row"><div class="modal-key">${k}</div><div class="modal-val">${v}</div></div>`).join('');
-
-  // Marcar botón activo del estado actual
   document.querySelectorAll('.estado-btn').forEach(btn=>{
     btn.className='estado-btn';
     if(btn.dataset.estado===o.estado) btn.classList.add('sel-'+btn.dataset.key);
   });
-
   document.getElementById('guiaBox').classList.remove('visible');
   document.getElementById('guiaInput').value='';
   document.getElementById('savingIndicator').textContent='';
   document.getElementById('msgAsunto').value='';
   document.getElementById('msgTexto').value='';
   document.getElementById('msgIndicator').textContent='';
-
-  // Mostrar guía si el estado actual ya es Enviado
   if(ek(o.estado)==='enviado') document.getElementById('guiaBox').classList.add('visible');
-
   const cb=document.getElementById('btnComprobante');
   if(o.comprobante&&o.comprobante.startsWith('http')){cb.href=o.comprobante;cb.style.display='inline-flex';}else{cb.style.display='none';}
+  const cb2=document.getElementById('btnCSF');
+  if(o.csf&&o.csf.startsWith('http')){cb2.href=o.csf;cb2.style.display='inline-flex';}else{cb2.style.display='none';}
   document.getElementById('modalOverlay').classList.add('open');
 }
 
 function closeModalOut(e){if(e.target===document.getElementById('modalOverlay'))closeModal();}
 function closeModal(){document.getElementById('modalOverlay').classList.remove('open');}
 
-// Seleccionar estado (solo visual, sin llamar al servidor)
 function selEstado(btn){
   estadoSeleccionado=btn.dataset.estado;
   document.querySelectorAll('.estado-btn').forEach(b=>b.className='estado-btn');
@@ -547,7 +519,6 @@ function selEstado(btn){
   document.getElementById('savingIndicator').textContent='';
 }
 
-// Guardar estado SIN correo
 async function guardarEstado(){
   if(!currentOrder||!estadoSeleccionado)return;
   const ind=document.getElementById('savingIndicator');
@@ -565,7 +536,6 @@ async function guardarEstado(){
   }catch{ind.textContent='⚠️ Error de conexión';showToast('Error de conexión','error');}
 }
 
-// Guardar estado Y enviar correo al cliente
 async function notificarCliente(){
   if(!currentOrder||!estadoSeleccionado)return;
   const ind=document.getElementById('savingIndicator');
@@ -585,7 +555,6 @@ async function notificarCliente(){
   }catch{ind.textContent='⚠️ Error de conexión';showToast('Error de conexión','error');}
 }
 
-// Enviar mensaje libre
 async function enviarMensaje(){
   if(!currentOrder)return;
   const asunto=document.getElementById('msgAsunto').value.trim();
@@ -604,7 +573,6 @@ async function enviarMensaje(){
   }catch{ind.textContent='⚠️ Error de conexión';showToast('Error de conexión','error');}
 }
 
-// ═══ IMPRIMIR ════════════════════════════════════════════
 function imprimirNota(){
   if(!currentOrder)return;
   const o=currentOrder;
